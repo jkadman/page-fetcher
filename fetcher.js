@@ -13,13 +13,18 @@ const fs = require('fs');
 //   // file written successfully
 // });
 
+
+
 const request = require('request');
 request('http://www.example.edu', (error, response, body) => {
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  fs.writeFile('../page-fetcher/test.txt', 'http://www.example.edu', err => {
+  fs.writeFile('../page-fetcher/test.txt', body, err => {
     if (err) {
       console.error(err);
+    } else {
+      let data = body.length
+      console.log(`Downloaded and saved ${data} bytes to ./test.html.`)
     }
     // file written successfully
   });
